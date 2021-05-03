@@ -1,14 +1,13 @@
 import {
-  Observable,
   from,
   timer,
-} from 'https://cdn.skypack.dev/rxjs';
+} from 'https://cdn.skypack.dev/rxjs@6.6.6';
 import {
   flatMap,
   distinct,
   takeWhile,
   takeUntil,
-} from 'https://cdn.skypack.dev/rxjs/operators';
+} from 'https://cdn.skypack.dev/rxjs@6.6.6/operators';
 import * as base64 from 'https://denopkg.com/chiefbiiko/base64/mod.ts';
 
 export interface SMSRequest {
@@ -32,7 +31,7 @@ export class TwilioSMS {
       );
   }
 
-  public sendSms(payload: SMSRequest): Observable<string> {
+  public sendSms(payload: SMSRequest) {
     return from(
       this.postSMSRequest(
         <{ [key: string]: string }>(<unknown>payload)
@@ -75,7 +74,7 @@ export class TwilioSMS {
 
   private pollRequestStatus(
     uri: string
-  ): Observable<string> {
+  ) {
     const timeout = timer(10 * 1000);
 
     return timer(0, 500).pipe(

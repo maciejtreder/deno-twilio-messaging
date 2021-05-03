@@ -1,4 +1,4 @@
-import { TwilioSMS, SMSRequest } from 'https://raw.githubusercontent.com/maciejtreder/deno-twilio-messaging/ea7331fb84795b39e6446d2763e08d9e35c4439e/twilioSMS.ts';
+import { TwilioSMS, SMSRequest } from 'https://raw.githubusercontent.com/maciejtreder/deno-twilio-messaging/step1/twilioSMS.ts';
 
 const accountSid: string = <string>(
   Deno.env.get('TWILIO_ACCOUNT_SID')
