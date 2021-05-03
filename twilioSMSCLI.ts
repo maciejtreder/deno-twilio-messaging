@@ -1,5 +1,6 @@
 import yargs from 'https://cdn.deno.land/yargs/versions/yargs-v16.2.1-deno/raw/deno.ts';
 import * as _ from 'https://deno.land/x/lodash@4.17.15-es/lodash.js';
+import { TwilioSMS, SMSRequest } from 'https://raw.githubusercontent.com/maciejtreder/deno-twilio-messaging/step1/twilioSMS.ts';
 
 interface Arguments {
     from: string;
@@ -43,4 +44,10 @@ if (errors.length > 0) {
     Deno.exit(1)
 }
 
-console.log(inputArgs);
+const message: SMSRequest = {
+    From: inputArgs.from,
+    To: inputArgs.to,
+    Body: inputArgs.body,
+};
+const helper = new TwilioSMS(inputArgs.sid, inputArgs.apikey, inputArgs.secret);
+helper.sendSms(message).subscribe(console.log);
